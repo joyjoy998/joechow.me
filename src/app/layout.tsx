@@ -46,9 +46,12 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className="m-0 h-full p-0">
+      <html
+        lang="en"
+        className="scrollbar-thin scrollbar-thumb-muted-foreground scrollbar-track-muted dark"
+      >
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-full flex-col`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
         >
           <ThemeProvider
             attribute="class"

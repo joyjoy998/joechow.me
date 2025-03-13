@@ -11,7 +11,7 @@ export default function Introduction() {
         </span>
       </p>
       <div className="h-10 mb-8 sm:mb-10">
-        <IntroAnimation text1={"<Developer />"} text2="<Full Stack />" />
+        <IntroAnimation text1={"<Web Developer />"} text2="<Full Stack />" />
       </div>
       <p className="mb-8 text-xl text-transparent sm:mb-10 sm:text-[26px] bg-linear-to-r from-green-200 via-green-100 opacity-60 to-green-200 bg-clip-text w-fit">
         #Joe #Haochuan #浩川
@@ -19,7 +19,7 @@ export default function Introduction() {
 
       <p className="mb-4 text-sm text-transparent sm:mb-6 sm:text-base bg-linear-to-b to-muted-foreground from-foreground bg-clip-text">
         I&apos;m a student at the University of Wollongong in Australia,
-        majoring in Computer Science. Write code, fix bugs, and occasionally
+        majoring in Computer Science. I write code, fix bugs, and occasionally
         wonder why it worked the first time.
       </p>
       <div className="flex gap-6 ">

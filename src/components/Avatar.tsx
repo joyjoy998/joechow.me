@@ -6,7 +6,7 @@ import avatarImg from "@/public/images/avatar.png";
 
 export default function Avatar({ page }: { page: string }) {
   return (
-    <div className="flex items-center justify-start col-span-1 w-16">
+    <div className="flex items-center justify-start col-span-1">
       <Link href="/">
         <div className="flex flex-col items-start justify-end">
           <Image
