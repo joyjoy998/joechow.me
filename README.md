@@ -10,3 +10,4 @@ Styling: Tailwind CSS + Shadcn UI
 Session Caching: Upstash Redis
 CMS: Sanity
 Deployment: Vercel
+icon: simple icon

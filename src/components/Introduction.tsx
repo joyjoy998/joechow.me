@@ -17,7 +17,7 @@ export default function Introduction() {
         #Joe #Haochuan #浩川
       </p>
 
-      <p className="mb-4 text-sm text-transparent sm:mb-6 sm:text-base bg-linear-to-b to-muted-foreground from-foreground bg-clip-text">
+      <p className="mb-4 text-sm sm:mb-6 sm:text-base bg-linear-to-b to-muted-foreground from-foreground bg-clip-text">
         I&apos;m a student at the University of Wollongong in Australia,
         majoring in Computer Science. I write code, fix bugs, and occasionally
         wonder why it worked the first time.

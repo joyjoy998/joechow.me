@@ -1,5 +1,9 @@
 import MotionDivWrapper from "@/components/MotionWrapper";
 import Introduction from "@/components/Introduction";
+import AboutMe from "@/components/AboutMe";
+import TechStack from "@/components/TechStack";
+import LeetCode from "@/components/LeetCode";
+import RecentUpdate from "@/components/RecentUpdate";
 
 export default async function Page() {
   return (
@@ -10,6 +14,17 @@ export default async function Page() {
     >
       <section className="w-full mb-20 lg:w-2/3 min-h-[calc(100svh-500px)] flex items-center gap-20">
         <Introduction />
+      </section>
+      <section className="relative flex flex-col justify-between w-full gap-10 lg:flex-row">
+        <div className="w-full">
+          <RecentUpdate blogs={[]} />
+        </div>
+
+        <aside className="lg:w-[680px] w-full lg:sticky lg:h-fit lg:-top-10 flex flex-col gap-12 rounded-2xl ">
+          <AboutMe />
+          <LeetCode />
+          <TechStack />
+        </aside>
       </section>
     </MotionDivWrapper>
   );
