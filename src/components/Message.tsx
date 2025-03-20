@@ -1,51 +1,70 @@
 import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
-import axios from "axios";
+import apiClient from "@/lib/apiClient";
+import { currentUser } from "@clerk/nextjs/server";
+import DeleteButton from "@/components/DeleteButton";
+
+interface Message {
+  id: string;
+  message: string;
+  userId: string;
+  createdAt: string;
+  userName: string;
+  userImg: string;
+}
 
 export default async function Messages() {
+  const user = await currentUser();
   const messages = await fetchMessages();
   return (
     <ul className="flex flex-col space-y-2">
-      {messages.map((message, index: number) => (
-        <li key={message.id}>
-          <div className="flex items-start gap-3 my-1">
-            <div className="flex flex-col items-center shrink-0 gap-2">
-              <Image
-                src={message.userImg}
-                width={40}
-                height={40}
-                alt="user profile image"
-                className="mb-1 rounded-full"
-              />
-              {index != messages.length - 1 && (
-                <div className="w-1 h-3 border-l-2 border-foreground"></div>
-              )}
-            </div>
+      {messages.map((message: Message, index: number) => {
+        const isCurrentUser = message.userId === user?.id;
 
-            <div className="flex flex-col w-full ">
-              <div className="flex items-center gap-2">
-                <p>{message.userName}</p>
-                <span className="text-xs text-muted-foreground">
-                  {formatDistanceToNow(new Date(message.createdAt), {
-                    addSuffix: true,
-                  })}
-                </span>
+        return (
+          <li key={message.id}>
+            <div className="flex items-start gap-3 my-1 group relative">
+              <div className="flex flex-col items-center shrink-0 gap-2">
+                <Image
+                  src={message.userImg}
+                  width={40}
+                  height={40}
+                  alt="user profile image"
+                  className="mb-1 rounded-full"
+                />
+                {index != messages.length - 1 && (
+                  <div className="w-1 h-3 border-l-2 border-foreground"></div>
+                )}
               </div>
 
-              <p className="mt-1 text-xs font-light break-words">
-                {message.message}
-              </p>
+              <div className="flex flex-col w-full ">
+                <div className="flex items-center gap-2">
+                  <p>{message.userName}</p>
+                  <span className="text-xs text-muted-foreground">
+                    {formatDistanceToNow(new Date(message.createdAt), {
+                      addSuffix: true,
+                    })}
+                  </span>
+                </div>
+
+                <p className="mt-1 text-xs font-light break-words">
+                  {message.message}
+                </p>
+                <div className="ml-0 flex justify-start mt-2">
+                  {isCurrentUser && <DeleteButton messageId={message.id} />}
+                </div>
+              </div>
             </div>
-          </div>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </ul>
   );
 }
 
 const fetchMessages = async () => {
   try {
-    const response = await axios.get("/api/message/get");
+    const response = await apiClient.get("/api/message/get");
     return response.data;
   } catch (error) {
     console.error("Error fetching messages:", error);

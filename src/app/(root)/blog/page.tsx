@@ -1,6 +1,10 @@
 import MotionDivWrapper from "@/components/MotionWrapper";
+import Description from "@/components/Description";
+import Blogs from "@/components/Blogs";
+import { getAllBlogs } from "@/lib/getBlogs";
 
 export default async function Page() {
+  const blogs = await getAllBlogs();
   return (
     <MotionDivWrapper
       initial={{ opacity: 0 }}
@@ -8,9 +12,8 @@ export default async function Page() {
       transition={{ duration: 2 }}
       className="flex flex-col gap-10"
     >
-      <section className="w-full">
-        <h1 className="text-4xl font-semibold ">Blog</h1>
-      </section>
+      <Description page="Blog" />
+      <Blogs blogs={blogs} />
     </MotionDivWrapper>
   );
 }
