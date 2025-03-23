@@ -48,14 +48,14 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
-        className="dark:scrollbar-thin dark:scrollbar-thumb-muted-foreground dark:scrollbar-track-muted dark"
+        className="scrollbar-thin scrollbar-thumb-muted-foreground scrollbar-track-muted"
       >
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >

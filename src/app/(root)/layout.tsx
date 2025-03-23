@@ -1,4 +1,3 @@
-import Background from "@/components/Background";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MainWrapper from "@/components/MainWrapper";

@@ -11,7 +11,7 @@ export default function Blogs({ blogs }: { blogs: Blog[] }) {
         <li key={blog._id} className="mb-10">
           <Link href={`/blog/${blog.slug.current}`}>
             <div
-              className={`flex flex-col sm:flex-row w-full lg:w-4/5 items-stretch gap-6 rounded-2xl  sm:shadow-[0_0px_1.2px_rgb(140,140,140)] shadow-[0_0px_2px_rgb(140,140,140)] hover:shadow-[0_0px_2px_rgb(140,140,140)] p-3 opacity-90 hover:opacity-100  hover:bg-muted`}
+              className={`flex flex-col sm:flex-row w-full lg:w-9/10 items-stretch gap-6 rounded-2xl  sm:shadow-[0_0px_1.2px_rgb(140,140,140)] shadow-[0_0px_2px_rgb(140,140,140)] hover:shadow-[0_0px_2px_rgb(140,140,140)] p-3 opacity-90 hover:opacity-100  hover:bg-muted`}
             >
               <div className="relative aspect-48/27 w-full sm:w-80 rounded-2xl shrink-0">
                 <Image
