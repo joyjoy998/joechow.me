@@ -7,6 +7,7 @@ import { navItems } from "@/lib/navItems";
 import { Button } from "@/components/ui/button";
 import { UserPlus } from "lucide-react";
 import Avatar from "@/components/Avatar";
+import { ThemeToggler } from "@/components/ThemeToggler";
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export default function Header() {
             </Button>
           </SignInButton>
         </SignedOut>
-
+        <ThemeToggler />
         <SignedIn>
           <UserButton />
         </SignedIn>
