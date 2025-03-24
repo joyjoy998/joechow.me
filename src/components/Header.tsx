@@ -19,6 +19,7 @@ export default function Header() {
       <NavBar items={navItems} />
 
       <div className="flex items-center justify-end gap-2">
+        <ThemeToggler />
         <SignedOut>
           <SignInButton
             mode="modal"
@@ -30,7 +31,7 @@ export default function Header() {
             </Button>
           </SignInButton>
         </SignedOut>
-        <ThemeToggler />
+
         <SignedIn>
           <UserButton />
         </SignedIn>

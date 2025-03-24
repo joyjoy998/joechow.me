@@ -17,7 +17,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
                     alt="Project image"
                     width={36}
                     height={36}
-                    className="object-contain "
+                    className="object-contain rounded-full"
                   />
                 </div>
 
