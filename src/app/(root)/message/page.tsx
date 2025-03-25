@@ -10,7 +10,11 @@ export default async function Page() {
   const user = await currentUser();
   return (
     <div className="flex flex-col w-full gap-20 lg:w-2/3">
-      <MotionDivWrapper initial={{ y: 30 }} animate={{ y: 0 }}>
+      <MotionDivWrapper
+        initial={{ y: 30 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
         <Description
           page="Messages"
           supplement="Feel free to share your mind💭"

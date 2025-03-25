@@ -34,11 +34,11 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "justify-center hidden col-span-2 mt-0.5 sm:flex h-14",
+        "justify-center hidden col-span-2 mt-0.5 sm:flex h-13",
         className
       )}
     >
-      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-1 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;
@@ -64,9 +64,11 @@ export function NavBar({ items, className }: NavBarProps) {
                   className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
                   initial={false}
                   transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
+                    type: "tween",
+                    duration: 0.7,
+                    ease: "easeOut",
+                    // stiffness: 30,
+                    // damping: 20,
                   }}
                 >
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">

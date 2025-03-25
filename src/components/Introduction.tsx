@@ -1,6 +1,8 @@
 import IntroAnimation from "@/components/IntroAnimation";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { IconBrandLinkedin, IconBrandGithub } from "@tabler/icons-react";
 import SocialMediaLink from "@/components/SocialMediaLink";
+import Resume from "@/components/Resume";
 
 export default function Introduction() {
   return (
@@ -24,14 +26,15 @@ export default function Introduction() {
       </p>
       <div className="flex gap-6 ">
         <SocialMediaLink link="#">
-          <Linkedin />
+          <IconBrandLinkedin />
         </SocialMediaLink>
         <SocialMediaLink link="#">
-          <Github />
+          <IconBrandGithub />
         </SocialMediaLink>
         <SocialMediaLink link="mailto:#">
           <Mail />
         </SocialMediaLink>
+        <Resume />
       </div>
     </div>
   );

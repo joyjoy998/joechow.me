@@ -2,7 +2,7 @@ import MotionDivWrapper from "@/components/MotionWrapper";
 import Introduction from "@/components/Introduction";
 import AboutMe from "@/components/AboutMe";
 import TechStack from "@/components/TechStack";
-import LeetCode from "@/components/LeetCode";
+import LeetCode from "@/components/LeetCodeStats";
 import RecentUpdate from "@/components/RecentUpdate";
 import { getAllBlogs } from "@/lib/getBlogs";
 
@@ -26,7 +26,7 @@ export default async function Page() {
         <aside className="lg:w-[680px] w-full lg:sticky lg:h-fit lg:-top-10 flex flex-col gap-12 rounded-2xl ">
           <AboutMe />
           <TechStack />
-          <LeetCode />
+          <LeetCode stats={[]} />
         </aside>
       </section>
     </MotionDivWrapper>

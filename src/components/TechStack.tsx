@@ -1,17 +1,17 @@
 "use client";
 import { Settings } from "lucide-react";
-import CSSIcon from "@/public/icons/CSSIcon";
-import ExpressIcon from "@/public/icons/ExpressIcon";
-import HtmlIcon from "@/public/icons/HtmlIcon";
-import JSIcon from "@/public/icons/JSIcon";
-import MySQLIcon from "@/public/icons/MySQLIcon";
-import NextIcon from "@/public/icons/NextIcon";
-import NodeIcon from "@/public/icons/NodeIcon";
-import PrismaIcon from "@/public/icons/PrismaIcon";
-import ReactIcon from "@/public/icons/ReactIcon";
-import RedisIcon from "@/public/icons/RedisIcon";
-import SupabaseIcon from "@/public/icons/SupabaseIcon";
-import TailwindIcon from "@/public/icons/TailwindIcon";
+import CSSIcon from "@public/icons/CSSIcon";
+import ExpressIcon from "@public/icons/ExpressIcon";
+import HtmlIcon from "@public/icons/HtmlIcon";
+import JSIcon from "@public/icons/JSIcon";
+import MySQLIcon from "@public/icons/MySQLIcon";
+import NextIcon from "@public/icons/NextIcon";
+import NodeIcon from "@public/icons/NodeIcon";
+import PrismaIcon from "@public/icons/PrismaIcon";
+import ReactIcon from "@public/icons/ReactIcon";
+import RedisIcon from "@public/icons/RedisIcon";
+import SupabaseIcon from "@public/icons/SupabaseIcon";
+import TailwindIcon from "@public/icons/TailwindIcon";
 import { MagneticIcon } from "@/components/ui/magnetic";
 
 export default function TechStack() {

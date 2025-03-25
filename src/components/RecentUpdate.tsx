@@ -1,4 +1,4 @@
-import { Newspaper } from "lucide-react";
+import { Newspaper, Calendar, Notebook } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "@/types/blogType";
@@ -20,7 +20,7 @@ export default function RecentUpdate({ blogs }: RecentUpdateProps) {
           <li key={blog.slug.current}>
             <Link href={`/blog/${blog.slug.current}`}>
               <div className="relative overflow-hidden rounded-3xl hover:shadow-[0_0px_2px_rgb(140,140,140)] shadow-[0_0px_1.2px_rgb(140,140,140)] opacity-70 hover:opacity-90">
-                <div className="relative aspect-[240/135] w-full ">
+                <div className="relative aspect-[512/384] w-full ">
                   <Image
                     src={blog.imageUrl}
                     alt="Blog image"
@@ -34,9 +34,11 @@ export default function RecentUpdate({ blogs }: RecentUpdateProps) {
                     {blog.title}
                   </h2>
                   <div className="flex justify-between items-center mt-1">
-                    <p className="text-xs text-muted-foreground">
-                      {timeFormatConverter(blog.publishedAt)}{" "}
-                      {blog.tag ? `| ${blog.tag}` : ""}
+                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                      <Calendar size={14} className="inline-block" />
+                      <span>{timeFormatConverter(blog.publishedAt)}</span>
+                      <Notebook size={14} className="inline-block ml-2" />
+                      <span>{blog.tag}</span>
                     </p>
                   </div>
                 </div>
