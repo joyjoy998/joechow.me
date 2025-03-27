@@ -19,7 +19,9 @@ export default function TechStack() {
     <div className="flex flex-col w-full gap-6 px-6 py-4 shadow-[0_0px_1.2px_rgb(140,140,140)] rounded-lg ">
       <h2 className="text-lg flex items-center gap-2">
         <Settings />
-        <span className="text-green-200 opacity-60">Tech Stack</span>
+        <span className="text-zinc-900 dark:text-green-200 opacity-80">
+          Tech Stack
+        </span>
       </h2>
       <div className="flex flex-col items-center justify-center gap-5">
         <div className="flex justify-between w-full">

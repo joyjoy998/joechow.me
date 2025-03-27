@@ -5,6 +5,6 @@ export const seo = {
   url: new URL(
     process.env.NODE_ENV === "production"
       ? "https://joejoe.me"
-      : "http://localhost:3002"
+      : "http://localhost:3000"
   ),
 } as const;

@@ -11,53 +11,52 @@ export default async function LeetCodeStats() {
   const stats = data.data.userProfileUserQuestionProgressV2;
 
   return (
-    <div className="flex flex-col w-full gap-6 px-6 py-4 shadow-[0_0px_1.2px_rgb(140,140,140)] rounded-lg ">
+    <div className="flex flex-col w-full gap-1 px-6 py-4 shadow-[0_0px_1.2px_rgb(140,140,140)] rounded-lg ">
       <h2 className="text-lg flex items-center gap-2">
         <IconBrandLeetcode />
-        <span className="text-green-200 opacity-60">LeetCode Tracker</span>
+        <span className="text-zinc-900 dark:text-green-200 opacity-80">
+          LeetCode Tracker
+        </span>
       </h2>
-      <div className="flex flex-col p-4 rounded-xl shadow-sm w-full max-w-xl">
-        <div className="mb-6">
-          <h2 className="text-gray-600 text-xl font-medium mb-2">
-            Total Solved
-          </h2>
-          <div className="flex items-center justify-between">
-            <div className="flex items-baseline">
-              <span className="text-3xl font-bold text-blue-500">
-                {stats.numAcceptedQuestions.reduce(
-                  (sum: number, item) => sum + (item.count || 0),
-                  0
-                ) || 0}
-              </span>
-              <span className="text-gray-600 text-xl font-normal ml-1">
-                Problems
-              </span>
+
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="items-baseline">
+            <h2 className="text-blue-500 text-3xl font-bold mr-2">
+              {stats.numAcceptedQuestions.reduce(
+                (sum: number, item) => sum + (item.count || 0),
+                0
+              ) || 0}
+            </h2>
+            <div className="text-gray-600 dark:text-white text-[12px]">
+              Problems Solved
             </div>
-            <div className="flex items-center gap-2">
-              <Flame />
-              <span className="text-gray-500 text-2xl font-medium">
-                Beats {stats.userSessionBeatsPercentage[1].percentage}%
-              </span>
-            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Flame className="text-orange-500" />
+            <span className="text-gray-600 dark:text-white font-medium">
+              Beats {stats.userSessionBeatsPercentage[1].percentage}%
+            </span>
           </div>
         </div>
 
-        <div className="flex justify-between gap-4">
-          <div className="flex-1 rounded-lg px-6 py-4">
+        <div className="grid grid-cols-3 gap-2">
+          <div className="bg-gray-200 dark:bg-gray-700 rounded-lg p-2 text-center flex items-center justify-between">
             <div className="text-teal-500 font-medium">Easy</div>
-            <div className="text-right font-bold text-xl">
+            <div className="text-gray-800 dark:text-white text-lg font-bold">
               {stats.numAcceptedQuestions[0].count}
             </div>
           </div>
-          <div className="flex-1 rounded-lg px-6 py-4">
-            <div className="text-yellow-500 font-medium">Med.</div>
-            <div className="text-right font-bold text-xl">
+          <div className="bg-gray-200 dark:bg-gray-700 rounded-lg p-2 text-center flex items-center justify-between">
+            <div className="text-yellow-600 text-sm font-medium">Med.</div>
+            <div className="text-gray-800 dark:text-white text-lg font-bold">
               {stats.numAcceptedQuestions[1].count}
             </div>
           </div>
-          <div className="flex-1 rounded-lg px-6 py-4">
-            <div className="text-red-500 font-medium">Hard</div>
-            <div className="text-right font-bold text-xl">
+          <div className="bg-gray-200 dark:bg-gray-700 rounded-lg p-2 text-center flex items-center justify-between">
+            <div className="text-red-600 text-sm font-medium">Hard</div>
+            <div className="text-gray-800 dark:text-white text-lg font-bold">
               {stats.numAcceptedQuestions[2].count}
             </div>
           </div>

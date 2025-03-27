@@ -17,7 +17,9 @@ export default async function RecentUpdate() {
     <div className="mt-10">
       <div className="flex items-center justify-start w-full gap-3 mb-10">
         <Newspaper />
-        <span className="text-lg font-semibold">Recent Update</span>
+        <span className="text-zinc-900 text-lg dark:text-green-200 opacity-80">
+          Recent Update
+        </span>
       </div>
       <ul className="grid w-full grid-cols-1 gap-10">
         {recentBlogs.map((blog) => (
@@ -34,7 +36,7 @@ export default async function RecentUpdate() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 py-2 px-4 rounded-b-3xl backdrop-blur-3xl">
-                  <h2 className="font-bold text-sm md:text-base text-foreground">
+                  <h2 className="font-bold text-sm md:text-base text-foreground dark:text-black dark:opacity-80">
                     {blog.title}
                   </h2>
                   <div className="flex justify-between items-center mt-1">
