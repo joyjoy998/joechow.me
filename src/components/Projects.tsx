@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { Project } from "../types/projectType";
 
-export default function Projects({ projects }: { projects: Project[] }) {
+export default async function Projects({ projects }: { projects: Project[] }) {
   return (
     <section>
       <ul className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 xl:grid-cols-3">

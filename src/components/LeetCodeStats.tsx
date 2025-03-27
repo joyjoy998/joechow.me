@@ -3,8 +3,11 @@ import { Flame } from "lucide-react";
 import apiClient from "@/lib/apiClient";
 
 export default async function LeetCodeStats() {
-  const { data, error } = await apiClient.get("/api/leetcode/get");
-  if (error) return null;
+  const res = await apiClient.get("/api/leetcode/get");
+  const { data, success } = res.data;
+  if (!success) {
+    return <div>Error fetching data</div>;
+  }
   const stats = data.data.userProfileUserQuestionProgressV2;
 
   return (
@@ -22,7 +25,7 @@ export default async function LeetCodeStats() {
             <div className="flex items-baseline">
               <span className="text-3xl font-bold text-blue-500">
                 {stats.numAcceptedQuestions.reduce(
-                  (sum, item) => sum + (item.count || 0),
+                  (sum: number, item) => sum + (item.count || 0),
                   0
                 ) || 0}
               </span>

@@ -3,12 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "@/types/blogType";
 import { timeFormatConverter } from "@/lib/timeFormatConverter";
+import apiClient from "@/lib/apiClient";
 
-type RecentUpdateProps = {
-  blogs: Blog[];
-};
-
-export default function RecentUpdate({ blogs }: RecentUpdateProps) {
+export default async function RecentUpdate() {
+  const res = await apiClient.get("/api/blog/get");
+  const { data, success } = res.data;
+  if (!success) {
+    return <div>Error fetching data</div>;
+  }
+  const blogs = data;
+  const recentBlogs = blogs.slice(0, 3) as Blog[];
   return (
     <div className="mt-10">
       <div className="flex items-center justify-start w-full gap-3 mb-10">
@@ -16,7 +20,7 @@ export default function RecentUpdate({ blogs }: RecentUpdateProps) {
         <span className="text-lg font-semibold">Recent Update</span>
       </div>
       <ul className="grid w-full grid-cols-1 gap-10">
-        {blogs.map((blog) => (
+        {recentBlogs.map((blog) => (
           <li key={blog.slug.current}>
             <Link href={`/blog/${blog.slug.current}`}>
               <div className="relative overflow-hidden rounded-3xl hover:shadow-[0_0px_2px_rgb(140,140,140)] shadow-[0_0px_1.2px_rgb(140,140,140)] opacity-70 hover:opacity-90">

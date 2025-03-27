@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
+import { redis } from "@/lib/redisClient";
 
 export async function GET() {
+  const userName = "joyjoy998";
+  const cacheKey = `leetcode:user:${userName}`;
+  const CACHE_TTL = 60 * 60; // 1 hour
+
   try {
+    const cachedData = (await redis.get(cacheKey)) as unknown;
+    if (typeof cachedData === "object" && cachedData !== null) {
+      return NextResponse.json({ success: true, data: cachedData });
+    }
+
     const response = await fetch(
       "https://alfa-leetcode-api.onrender.com/userProfileUserQuestionProgressV2/joyjoy998"
     );
@@ -12,7 +22,10 @@ export async function GET() {
       );
     }
     const json = await response.json();
-    return NextResponse.json(json);
+
+    await redis.set(cacheKey, json, { ex: CACHE_TTL });
+
+    return NextResponse.json({ success: true, data: json });
   } catch (error) {
     console.error("Error fetching data:", error);
     return NextResponse.json(

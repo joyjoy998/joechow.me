@@ -3,16 +3,19 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { formatDistanceToNow } from "date-fns";
-import { getBlogBySlug } from "@/lib/getBlogs";
+import apiClient from "@/lib/apiClient";
 import { notFound } from "next/navigation";
 
 export default async function Blog({ params }: { params: { slug: string } }) {
   const resolvedParams = await Promise.resolve(params);
   const slug = resolvedParams.slug;
-  const blog = await getBlogBySlug(slug);
-  if (!blog) {
+  const res = await apiClient.get(`/api/blog/get/${slug}`);
+  const { data, success } = res.data;
+  // console.log(success);
+  if (!success) {
     notFound();
   }
+  const blog = data;
   return (
     <section className="flex pr-8 mx-auto">
       <aside className="hidden lg:block sticky top-10 self-start mr-8">

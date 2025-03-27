@@ -4,11 +4,8 @@ import AboutMe from "@/components/AboutMe";
 import TechStack from "@/components/TechStack";
 import LeetCode from "@/components/LeetCodeStats";
 import RecentUpdate from "@/components/RecentUpdate";
-import { getAllBlogs } from "@/lib/getBlogs";
 
-export default async function Page() {
-  const blogs = await getAllBlogs();
-  const recentBlogs = blogs.slice(0, 3);
+export default function Page() {
   return (
     <MotionDivWrapper
       initial={{ opacity: 0 }}
@@ -20,13 +17,13 @@ export default async function Page() {
       </section>
       <section className="relative flex flex-col justify-between w-full gap-10 lg:flex-row">
         <div className="w-full">
-          <RecentUpdate blogs={recentBlogs} />
+          <RecentUpdate />
         </div>
 
         <aside className="lg:w-[680px] w-full lg:sticky lg:h-fit lg:-top-10 flex flex-col gap-12 rounded-2xl ">
           <AboutMe />
           <TechStack />
-          <LeetCode stats={[]} />
+          <LeetCode />
         </aside>
       </section>
     </MotionDivWrapper>

@@ -15,7 +15,12 @@ interface Message {
 
 export default async function Messages() {
   const user = await currentUser();
-  const messages = await fetchMessages();
+  const res = await apiClient.get("/api/message/get");
+  const { data, success } = res.data;
+  if (!success) {
+    return <div>Error fetching data</div>;
+  }
+  const messages = data;
   return (
     <ul className="flex flex-col space-y-2">
       {messages.map((message: Message, index: number) => {
@@ -61,13 +66,3 @@ export default async function Messages() {
     </ul>
   );
 }
-
-const fetchMessages = async () => {
-  try {
-    const response = await apiClient.get("/api/message/get");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching messages:", error);
-    return [];
-  }
-};

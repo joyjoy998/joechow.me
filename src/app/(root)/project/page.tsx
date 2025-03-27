@@ -1,10 +1,15 @@
 import MotionDivWrapper from "@/components/MotionWrapper";
 import Description from "@/components/Description";
-import { getProjects } from "@/lib/getProject";
 import Projects from "@/components/Projects";
+import apiClient from "@/lib/apiClient";
 
 export default async function Page() {
-  const projects = await getProjects();
+  const res = await apiClient.get("/api/project/get");
+  const { data, success } = res.data;
+  if (!success) {
+    return <div>Error fetching data</div>;
+  }
+  const projects = data;
   return (
     <MotionDivWrapper
       initial={{ opacity: 0 }}

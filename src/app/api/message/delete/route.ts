@@ -2,8 +2,10 @@ import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { redis } from "@/lib/redisClient";
 
 export async function DELETE(req: NextRequest) {
+  const cacheKey = "messages:all";
   try {
     const user = await currentUser();
     if (!user) {
@@ -39,6 +41,8 @@ export async function DELETE(req: NextRequest) {
     await prisma.message.delete({
       where: { id: messageId },
     });
+
+    await redis.del(cacheKey);
 
     revalidatePath("/message");
 

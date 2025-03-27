@@ -1,10 +1,16 @@
 import MotionDivWrapper from "@/components/MotionWrapper";
 import Description from "@/components/Description";
 import Blogs from "@/components/Blogs";
-import { getAllBlogs } from "@/lib/getBlogs";
+import apiClient from "@/lib/apiClient";
 
 export default async function Page() {
-  const blogs = await getAllBlogs();
+  const res = await apiClient.get("/api/blog/get");
+  const { data, success } = res.data;
+  if (!success) {
+    return <div>Error fetching data</div>;
+  }
+  const blogs = data;
+
   return (
     <MotionDivWrapper
       initial={{ opacity: 0 }}

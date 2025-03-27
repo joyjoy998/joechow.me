@@ -65,9 +65,10 @@ export function NavBar({ items, className }: NavBarProps) {
                   initial={false}
                   transition={{
                     type: "tween",
-                    duration: 0.7,
+                    duration: 1.1,
                     ease: "easeOut",
-                    // stiffness: 30,
+                    // type: "spring",
+                    // stiffness: 300,
                     // damping: 20,
                   }}
                 >
