@@ -2,10 +2,11 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MainWrapper from "@/components/MainWrapper";
 import { GridBackground } from "@/components/Background";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <>
       <GridBackground />
       <div
         className="flex flex-col items-center px-6 pt-10 mx-auto 
@@ -25,6 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <MainWrapper>{children}</MainWrapper>
         <Footer />
       </div>
-    </div>
+      <Analytics />
+    </>
   );
 }

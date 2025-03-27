@@ -4,7 +4,7 @@ import { redis } from "@/lib/redisClient";
 export async function GET() {
   const userName = "joyjoy998";
   const cacheKey = `leetcode:user:${userName}`;
-  const CACHE_TTL = 60 * 60; // 1 hour
+  const CACHE_TTL = 60 * 60 * 2; // 2 hour
 
   try {
     const cachedData = (await redis.get(cacheKey)) as unknown;

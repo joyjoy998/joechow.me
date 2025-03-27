@@ -5,6 +5,7 @@ import MotionDivWrapper from "@/components/MotionWrapper";
 import CommentArea from "@/components/CommentArea";
 import Message from "@/components/Message";
 import Image from "next/image";
+import { Loading } from "@/components/Loading";
 
 export default async function Page() {
   const user = await currentUser();
@@ -20,7 +21,7 @@ export default async function Page() {
           supplement="Feel free to share your mind💭"
         />
       </MotionDivWrapper>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         {user ? (
           <CommentArea>
             <Image
@@ -38,7 +39,6 @@ export default async function Page() {
         )}
       </Suspense>
       <Message />
-      <Suspense fallback={<div>Loading...</div>}></Suspense>
     </div>
   );
 }

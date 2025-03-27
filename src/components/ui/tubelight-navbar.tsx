@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   name: string;
@@ -18,10 +19,24 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name);
+  const pathname = usePathname();
+  const [activeTab, setActiveTab] = useState("");
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    if (pathname === "/") {
+      setActiveTab("Home");
+      return;
+    }
+
+    const currentItem = items.find((item) => {
+      if (item.url === "/") return false;
+
+      return pathname === item.url || pathname.startsWith(`${item.url}/`);
+    });
+
+    setActiveTab(currentItem?.name || "Home");
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -29,7 +44,7 @@ export function NavBar({ items, className }: NavBarProps) {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [pathname, items]);
 
   return (
     <div
