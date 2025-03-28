@@ -3,13 +3,23 @@ import { Flame } from "lucide-react";
 import apiClient from "@/lib/apiClient";
 
 export default async function LeetCodeStats() {
-  const res = await apiClient.get("/api/leetcode/get");
-  const { data, success } = res.data;
-  if (!success) {
+  let data;
+  let success = false;
+
+  try {
+    const res = await apiClient.get("/api/leetcode/get");
+    success = res.data.success;
+    data = res.data.data;
+
+    if (!success) {
+      return <div>Error fetching data</div>;
+    }
+  } catch (error) {
+    console.error("Error fetching LeetCode stats:", error);
     return <div>Error fetching data</div>;
   }
-  const stats = data.data.userProfileUserQuestionProgressV2;
 
+  const stats = data.data.userProfileUserQuestionProgressV2;
   return (
     <div className="flex flex-col w-full gap-1 px-6 py-4 shadow-[0_0px_1.2px_rgb(140,140,140)] rounded-lg ">
       <h2 className="text-lg flex items-center gap-2">
