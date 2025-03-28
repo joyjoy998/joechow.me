@@ -1,4 +1,4 @@
-import { Home, Search, Bell, User } from "lucide-react";
+import { Home, Newspaper, Code, MessageSquare } from "lucide-react";
 export const navItems = [
   {
     name: "Home",
@@ -8,16 +8,16 @@ export const navItems = [
   {
     name: "Blog",
     url: "/blog",
-    icon: Search,
+    icon: Newspaper,
   },
   {
     name: "Project",
     url: "/project",
-    icon: Bell,
+    icon: Code,
   },
   {
     name: "Message",
     url: "/message",
-    icon: User,
+    icon: MessageSquare,
   },
 ];
