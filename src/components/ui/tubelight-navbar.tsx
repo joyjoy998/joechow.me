@@ -21,14 +21,12 @@ interface NavBarProps {
 export function NavBar({ items, className }: NavBarProps) {
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (pathname === "/") {
       setActiveTab("Home");
       return;
     }
-
     const currentItem = items.find((item) => {
       if (item.url === "/") return false;
 
@@ -36,14 +34,6 @@ export function NavBar({ items, className }: NavBarProps) {
     });
 
     setActiveTab(currentItem?.name || "Home");
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, [pathname, items]);
 
   return (
