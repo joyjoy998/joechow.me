@@ -2,6 +2,11 @@ import { IconBrandLeetcode } from "@tabler/icons-react";
 import { Flame } from "lucide-react";
 import apiClient from "@/lib/apiClient";
 
+interface QuestionCount {
+  count: number;
+  difficulty: string;
+}
+
 export default async function LeetCodeStats() {
   let data;
   let success = false;
@@ -19,7 +24,7 @@ export default async function LeetCodeStats() {
     return <div>Error fetching data</div>;
   }
 
-  const stats = data.data.userProfileUserQuestionProgressV2;
+  const stats = data;
   return (
     <div className="flex flex-col w-full gap-1 px-6 py-4 shadow-[0_0px_1.2px_rgb(140,140,140)] rounded-lg ">
       <h2 className="text-lg flex items-center gap-2">
@@ -34,7 +39,7 @@ export default async function LeetCodeStats() {
           <div className="items-baseline">
             <h2 className="text-blue-500 text-3xl font-bold mr-2">
               {stats.numAcceptedQuestions.reduce(
-                (sum: number, item) => sum + (item.count || 0),
+                (sum: number, item: QuestionCount) => sum + (item.count || 0),
                 0
               ) || 0}
             </h2>

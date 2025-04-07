@@ -23,9 +23,16 @@ export async function GET() {
     }
     const json = await response.json();
 
-    await redis.set(cacheKey, json, { ex: CACHE_TTL });
+    const extractedData = {
+      numAcceptedQuestions:
+        json.data.userProfileUserQuestionProgressV2.numAcceptedQuestions,
+      userSessionBeatsPercentage:
+        json.data.userProfileUserQuestionProgressV2.userSessionBeatsPercentage,
+    };
 
-    return NextResponse.json({ success: true, data: json });
+    await redis.set(cacheKey, extractedData, { ex: CACHE_TTL });
+
+    return NextResponse.json({ success: true, data: extractedData });
   } catch (error) {
     console.error("Error fetching data:", error);
     return NextResponse.json(

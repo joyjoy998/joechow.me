@@ -6,9 +6,14 @@ import { formatDistanceToNow } from "date-fns";
 import apiClient from "@/lib/apiClient";
 import { notFound } from "next/navigation";
 
-export default async function Blog({ params }: { params: { slug: string } }) {
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams.slug;
+type BlogPageParams = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Blog({ params }: BlogPageParams) {
+  const slug = params.slug;
   const res = await apiClient.get(`/api/blog/get/${slug}`);
   const { data, success } = res.data;
   // console.log(success);
