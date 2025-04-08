@@ -6,6 +6,8 @@ import { formatDistanceToNow } from "date-fns";
 import apiClient from "@/lib/apiClient";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 type Params = Promise<{
   slug: string;
 }>;
