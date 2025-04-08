@@ -7,11 +7,12 @@ import apiClient from "@/lib/apiClient";
 import { notFound } from "next/navigation";
 
 type Params = Promise<{
-  params: { slug: string };
+  slug: string;
 }>;
 
 export default async function Blog({ params }: { params: Params }) {
-  const slug = await params;
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
   const res = await apiClient.get(`/api/blog/get/${slug}`);
   const { data, success } = res.data;
   // console.log(success);

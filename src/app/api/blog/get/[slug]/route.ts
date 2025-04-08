@@ -4,11 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redisClient";
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { slug: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = (await params).slug;
   const cacheKey = `blog:${slug}`;
   const CACHE_TTL = 60 * 60 * 8;
   if (!slug) {
