@@ -24,7 +24,7 @@ export default function Introduction() {
         and occasionally wonder why it worked the first time.🤣
       </p>
       <div className="flex gap-6 ">
-        <SocialMediaLink link="www.linkedin.com/in/haochuan-zhou">
+        <SocialMediaLink link="https://www.linkedin.com/in/haochuan-zhou/">
           <IconBrandLinkedin />
         </SocialMediaLink>
         <SocialMediaLink link="https://github.com/joyjoy998">
