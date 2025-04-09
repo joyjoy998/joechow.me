@@ -13,7 +13,7 @@ function getBaseUrl() {
     return `https://${process.env.VERCEL_URL}`;
   }
 
-  return "localhost:3000";
+  return "http://localhost:3000";
 }
 
 const apiClient = axios.create({

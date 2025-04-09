@@ -33,7 +33,7 @@ export default function DeleteButton({ messageId }: { messageId: string }) {
           className="opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:text-red-700"
           aria-label="Delete message"
         >
-          <Trash2 size={12} />
+          <Trash2 size={14} />
         </button>
       </AlertDialogTrigger>
       <AlertDialogContent>

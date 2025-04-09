@@ -44,7 +44,7 @@ export default async function Messages() {
 
               <div className="flex flex-col w-full ">
                 <div className="flex items-center gap-2">
-                  <p>{message.userName}</p>
+                  <p className="text-lg">{message.userName}</p>
                   <span className="text-xs text-muted-foreground">
                     {formatDistanceToNow(new Date(message.createdAt), {
                       addSuffix: true,
@@ -52,7 +52,7 @@ export default async function Messages() {
                   </span>
                 </div>
 
-                <p className="mt-1 text-xs font-light break-words">
+                <p className="mt-1 text-base font-light break-words">
                   {message.message}
                 </p>
                 <div className="ml-0 flex justify-start mt-2">
