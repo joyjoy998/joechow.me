@@ -12,7 +12,7 @@ export default function Page() {
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
     >
-      <section className="w-full mb-20 lg:w-2/3 min-h-[calc(100svh-500px)] flex items-center gap-20">
+      <section className="w-full mb-5 lg:w-2/3 min-h-[calc(100svh-700px)] flex items-center gap-20">
         <Introduction />
       </section>
       <section className="relative flex flex-col justify-between w-full gap-10 lg:flex-row">
