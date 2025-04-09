@@ -6,7 +6,7 @@ import { Project } from "../types/projectType";
 export default async function Projects({ projects }: { projects: Project[] }) {
   return (
     <section>
-      <ul className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 xl:grid-cols-3">
+      <ul className="grid w-full grid-cols-1 gap-5 mx-auto grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
         {projects.map((project) => (
           <li key={project._id}>
             <Link href={project.link} target="_blank">

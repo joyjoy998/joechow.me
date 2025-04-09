@@ -34,7 +34,15 @@ export const blogType = defineType({
     defineField({
       name: 'content',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [
+        {type: 'block'},
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
     }),
     defineField({
       name: 'tag',
