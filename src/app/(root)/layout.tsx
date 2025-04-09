@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div
         className="flex flex-col items-center px-6 pt-10 mx-auto 
                     w-[90%] sm:w-[85%]
-                    md:max-w-[800px] 
+                    md:max-w-[1000px] 
                     min-h-svh shadow-lg
                     relative z-1
                     text-zinc-800 

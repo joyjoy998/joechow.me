@@ -5,8 +5,6 @@ import TechStack from "@/components/TechStack";
 import LeetCode from "@/components/LeetCodeStats";
 import RecentUpdate from "@/components/RecentUpdate";
 
-export const dynamic = "force-dynamic";
-
 export default function Page() {
   return (
     <MotionDivWrapper

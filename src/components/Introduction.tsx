@@ -19,19 +19,18 @@ export default function Introduction() {
         #Joe #Haochuan #浩川
       </p>
 
-      <p className="text-gray-800 dark:text-white mb-4 text-sm sm:mb-6 sm:text-base bg-linear-to-b to-muted-foreground from-foreground bg-clip-text">
-        I&apos;m a student at the University of Wollongong in Australia,
-        majoring in Computer Science. I write code, fix bugs, and occasionally
-        wonder why it worked the first time.
+      <p className="text-gray-800 dark:text-white mb-4 text-base sm:mb-6 sm:text-lg bg-linear-to-b to-muted-foreground from-foreground bg-clip-text">
+        Write code, fix bugs, <br />
+        and occasionally wonder why it worked the first time.🤣
       </p>
       <div className="flex gap-6 ">
-        <SocialMediaLink link="#">
+        <SocialMediaLink link="www.linkedin.com/in/haochuan-zhou">
           <IconBrandLinkedin />
         </SocialMediaLink>
-        <SocialMediaLink link="#">
+        <SocialMediaLink link="https://github.com/joyjoy998">
           <IconBrandGithub />
         </SocialMediaLink>
-        <SocialMediaLink link="mailto:#">
+        <SocialMediaLink link="mailto:mrzhouhc@hotmail.com">
           <Mail />
         </SocialMediaLink>
         <Resume />
