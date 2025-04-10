@@ -1,11 +1,11 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { Suspense } from "react";
 import Description from "@/components/Description";
 import MotionDivWrapper from "@/components/MotionWrapper";
 import CommentArea from "@/components/CommentArea";
 import Message from "@/components/Message";
 import Image from "next/image";
-import { Loading } from "@/components/Loading";
+// import { Loading } from "@/components/Loading";
+// import { Suspense } from "react";
 
 export const revalidate = 180;
 
@@ -23,23 +23,23 @@ export default async function Page() {
           supplement="Feel free to share your mind💭"
         />
       </MotionDivWrapper>
-      <Suspense fallback={<Loading />}>
-        {user ? (
-          <CommentArea>
-            <Image
-              src={user.imageUrl}
-              width={40}
-              height={40}
-              alt="user profile image"
-              className="rounded-full "
-            />
-          </CommentArea>
-        ) : (
-          <div className="flex items-center justify-start h-20 px-10 pr-2 text-sm rounded-lg bg-secondary text-muted-foreground">
-            🔓 Please log in to leave a message
-          </div>
-        )}
-      </Suspense>
+      {/* <Suspense fallback={<Loading />}> */}
+      {user ? (
+        <CommentArea>
+          <Image
+            src={user.imageUrl}
+            width={40}
+            height={40}
+            alt="user profile image"
+            className="rounded-full "
+          />
+        </CommentArea>
+      ) : (
+        <div className="flex items-center justify-start h-20 px-10 pr-2 text-sm rounded-lg bg-secondary text-muted-foreground">
+          🔓 Please log in to leave a message
+        </div>
+      )}
+      {/* </Suspense> */}
       <Message />
     </div>
   );
