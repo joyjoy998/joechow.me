@@ -35,7 +35,7 @@ These versions are only used in this portfolio project, which does not mean that
 git clone https://github.com/joyjoy998/joechow.me.git
 ```
 
-And then the most convenient way is drag the folder to VS Code, and enter the following command in the terminal.
+And then the most convenient way is drag the folder to VS Code, switch to non-sanity branch and enter the following command in the terminal.
 
 ### Install Dependencies
 
