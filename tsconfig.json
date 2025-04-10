@@ -19,7 +19,6 @@
       }
     ],
     "paths": {
-      "@studio/*": ["./studio-joejoe.me/*"],
       "@/*": ["./src/*"],
       "@public/*": ["./public/*"]
     }
