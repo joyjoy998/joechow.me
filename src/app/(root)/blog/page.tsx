@@ -2,12 +2,13 @@ import MotionDivWrapper from "@/components/MotionWrapper";
 import Description from "@/components/Description";
 import Blogs from "@/components/Blogs";
 import apiClient from "@/lib/apiClient";
+import NotFound from "@/components/notFound";
 
 export default async function Page() {
   const res = await apiClient.get("/api/blog/get");
   const { data, success } = res.data;
   if (!success) {
-    return <div>Error fetching data</div>;
+    return <NotFound />;
   }
   const blogs = data;
 

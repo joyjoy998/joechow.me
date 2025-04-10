@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
-import { PortableText } from "next-sanity";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { formatDistanceToNow } from "date-fns";
 import apiClient from "@/lib/apiClient";
-import { notFound } from "next/navigation";
+import NotFound from "@/components/notFound";
 
 type Params = Promise<{
   slug: string;
@@ -17,7 +17,7 @@ export default async function Blog({ params }: { params: Params }) {
   const { data, success } = res.data;
   // console.log(success);
   if (!success) {
-    notFound();
+    return <NotFound />;
   }
   const blog = data;
   return (
@@ -63,9 +63,63 @@ export default async function Blog({ params }: { params: Params }) {
           <MDXRemote source={content} />
         </main> */}
         <main className="mt-16">
-          <PortableText value={blog.content} />
+          <PortableText value={blog.content} components={components} />
         </main>
       </article>
     </section>
   );
 }
+
+const components: PortableTextComponents = {
+  block: {
+    h1: ({ children }) => (
+      <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-2xl font-bold mt-6 mb-3">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-xl font-bold mt-5 mb-2">{children}</h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className="text-lg font-bold mt-4 mb-2">{children}</h4>
+    ),
+    h5: ({ children }) => (
+      <h5 className="text-base font-bold mt-3 mb-1">{children}</h5>
+    ),
+    normal: ({ children }) => (
+      <p className="mb-4 leading-relaxed">{children}</p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
+        {children}
+      </blockquote>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    link: ({ value, children }) => (
+      <a
+        href={value.href}
+        className="text-blue-600 hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc pl-5 mb-4">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal pl-5 mb-4">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="mb-1">{children}</li>,
+    number: ({ children }) => <li className="mb-1">{children}</li>,
+  },
+};

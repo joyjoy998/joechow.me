@@ -22,7 +22,6 @@ export async function GET() {
       summary,
       "imageUrl": image.asset->url,
       author,
-      content,
       tag,
     }
   `;
