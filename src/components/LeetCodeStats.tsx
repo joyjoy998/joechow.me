@@ -42,7 +42,7 @@ export default function LeetCodeStats() {
     fetchData();
   }, []);
 
-  if (error) return <div>Error fetching data</div>;
+  if (error) return;
   if (!stats) return <div>Loading...</div>;
 
   return (
