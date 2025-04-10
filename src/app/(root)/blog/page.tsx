@@ -4,6 +4,8 @@ import Blogs from "@/components/Blogs";
 import apiClient from "@/lib/apiClient";
 import NotFound from "@/components/notFound";
 
+export const revalidate = 180;
+
 export default async function Page() {
   const res = await apiClient.get("/api/blog/get");
   const { data, success } = res.data;

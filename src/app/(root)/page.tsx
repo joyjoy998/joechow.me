@@ -5,6 +5,8 @@ import TechStack from "@/components/TechStack";
 import LeetCode from "@/components/LeetCodeStats";
 import RecentUpdate from "@/components/RecentUpdate";
 
+export const revalidate = 180;
+
 export default function Page() {
   return (
     <MotionDivWrapper

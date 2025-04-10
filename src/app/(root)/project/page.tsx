@@ -4,6 +4,8 @@ import Projects from "@/components/Projects";
 import apiClient from "@/lib/apiClient";
 import NotFound from "@/components/notFound";
 
+export const revalidate = 180;
+
 export default async function Page() {
   const res = await apiClient.get("/api/project/get");
   const { data, success } = res.data;

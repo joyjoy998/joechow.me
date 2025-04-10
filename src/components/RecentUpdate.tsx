@@ -5,6 +5,8 @@ import { Blog } from "@/types/blogType";
 import { timeFormatConverter } from "@/lib/timeFormatConverter";
 import apiClient from "@/lib/apiClient";
 
+export const revalidate = 180;
+
 export default async function RecentUpdate() {
   const res = await apiClient.get("/api/blog/get");
   const { data, success } = res.data;

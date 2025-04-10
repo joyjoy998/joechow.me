@@ -10,6 +10,8 @@ type Params = Promise<{
   slug: string;
 }>;
 
+export const revalidate = 180;
+
 export default async function Blog({ params }: { params: Params }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
