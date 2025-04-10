@@ -1,30 +1,50 @@
+"use client";
+
 import { IconBrandLeetcode } from "@tabler/icons-react";
 import { Flame } from "lucide-react";
 import apiClient from "@/lib/apiClient";
+import { useState, useEffect } from "react";
 
 interface QuestionCount {
   count: number;
-  difficulty: string;
+  difficulty: "EASY" | "MEDIUM" | "HARD";
 }
 
-export default async function LeetCodeStats() {
-  let data;
-  let success = false;
+interface BeatPercentage {
+  difficulty: "EASY" | "MEDIUM" | "HARD";
+  percentage: number | null;
+}
 
-  try {
-    const res = await apiClient.get("/api/leetcode/get");
-    success = res.data.success;
-    data = res.data.data;
+interface LeetCodeStats {
+  numAcceptedQuestions: QuestionCount[];
+  userSessionBeatsPercentage: BeatPercentage[];
+}
 
-    if (!success) {
-      return <div>Error fetching data</div>;
-    }
-  } catch (error) {
-    console.error("Error fetching LeetCode stats:", error);
-    return <div>Error fetching data</div>;
-  }
+export default function LeetCodeStats() {
+  const [stats, setStats] = useState<LeetCodeStats | null>(null);
+  const [error, setError] = useState(false);
 
-  const stats = data;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await apiClient.get("/api/leetcode/get");
+        if (res.data.success) {
+          setStats(res.data.data);
+        } else {
+          setError(true);
+        }
+      } catch (err) {
+        console.error("Error fetching LeetCode stats:", err);
+        setError(true);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (error) return <div>Error fetching data</div>;
+  if (!stats) return <div>Loading...</div>;
+
   return (
     <div className="flex flex-col w-full gap-1 px-6 py-4 shadow-[0_0px_1.2px_rgb(140,140,140)] rounded-lg ">
       <h2 className="text-lg flex items-center gap-2">
