@@ -26,6 +26,21 @@ export default async function Messages() {
       {messages.map((message: Message, index: number) => {
         const isCurrentUser = message.userId === user?.id;
 
+        const getLineHeight = (message: Message) => {
+          const length = message.message.length;
+
+          if (length < 50) return "h-3";
+          if (length < 100) return "h-6";
+          if (length < 150) return "h-9";
+          if (length < 200) return "h-12";
+          if (length < 250) return "h-21";
+          if (length < 300) return "h-24";
+          if (length < 350) return "h-27";
+          if (length < 400) return "h-30";
+          if (length < 450) return "h-33";
+          return "h-36";
+        };
+
         return (
           <li key={message.id}>
             <div className="flex items-start gap-3 my-1 group relative">
@@ -38,7 +53,9 @@ export default async function Messages() {
                   className="mb-1 rounded-full"
                 />
                 {index != messages.length - 1 && (
-                  <div className="w-1 h-3 border-l-2 border-foreground"></div>
+                  <div
+                    className={`w-1 border-l-2 border-foreground ${getLineHeight(message)}`}
+                  ></div>
                 )}
               </div>
 
