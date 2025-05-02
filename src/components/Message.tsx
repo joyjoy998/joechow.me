@@ -1,7 +1,10 @@
+"use client";
+
+import useSWR from "swr";
 import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 import apiClient from "@/lib/apiClient";
-import { currentUser } from "@clerk/nextjs/server";
+import { useUser } from "@clerk/nextjs";
 import DeleteButton from "@/components/DeleteButton";
 
 interface Message {
@@ -13,14 +16,28 @@ interface Message {
   userImg: string;
 }
 
-export default async function Messages() {
-  const user = await currentUser();
-  const res = await apiClient.get("/api/message/get");
-  const { data, success } = res.data;
-  if (!success) {
+const fetcher = (url: string) =>
+  apiClient.get(url).then((res) => res.data.data);
+
+export default function Messages() {
+  const { user } = useUser();
+  const {
+    data: messages,
+    error,
+    isLoading,
+  } = useSWR("/api/message/get", fetcher);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <p className="text-lg">Loading...</p>
+      </div>
+    );
+  }
+  if (error) {
     return <div>Error fetching data</div>;
   }
-  const messages = data;
+
   return (
     <ul className="flex flex-col space-y-2">
       {messages.map((message: Message, index: number) => {
