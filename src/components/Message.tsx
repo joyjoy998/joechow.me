@@ -5,6 +5,7 @@ import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 import apiClient from "@/lib/apiClient";
 import { useUser } from "@clerk/nextjs";
+import { Loading } from "@/components/Loading";
 import DeleteButton from "@/components/DeleteButton";
 
 interface Message {
@@ -28,11 +29,7 @@ export default function Messages() {
   } = useSWR("/api/message/get", fetcher);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center w-full h-full">
-        <p className="text-lg">Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
   if (error) {
     return <div>Error fetching data</div>;
