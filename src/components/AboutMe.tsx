@@ -20,10 +20,10 @@ export default function AboutMe() {
           🏡 Current Location:{" "}
           <a
             className="font-bold"
-            href="https://en.wikipedia.org/wiki/Wollongong"
+            href="https://en.wikipedia.org/wiki/Sydney"
             target="_blank"
           >
-            Wollongong, NSW, AU
+            Sydney, NSW, AU
           </a>
           .
         </li>
