@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { formatDistanceToNow } from "date-fns";
+import { urlFor } from "@/lib/sanityImageUrl";
 import apiClient from "@/lib/apiClient";
 import NotFound from "@/components/notFound";
 
@@ -47,24 +48,22 @@ export default async function Blog({ params }: { params: Params }) {
             </div>
           )}
 
-          <p className="mb-2 text-sm text-muted-foreground">
-            {formatDistanceToNow(new Date(blog.publishedAt), {
-              addSuffix: true,
-            })}{" "}
-            | {blog.tag}
-          </p>
-
           <h1 className="mb-2 text-4xl font-bold">{blog.title}</h1>
 
-          <p className="mb-6 text-muted-foreground">{blog.author}</p>
+          <p className=" text-muted-foreground">Author | {blog.author}</p>
 
-          <p className="">{blog.summary}</p>
+          <p className="text-sm text-muted-foreground">
+            Published{" "}
+            {formatDistanceToNow(new Date(blog.publishedAt), {
+              addSuffix: true,
+            })}
+          </p>
         </header>
 
         {/* <main className="mt-16 prose max-w-none prose-invert prose-p:text-foreground prose-h1:text-foreground prose-h2:text-foreground prose-h3:text-foreground prose-h4:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-strong:font-bold prose-a:text-blue-400 prose-a:opacity-80 prose-code:text-foreground prose-img:opacity-90 prose-p:tracking-tight prose-p:text-sm prose-li:text-sm">
           <MDXRemote source={content} />
         </main> */}
-        <main className="mt-16">
+        <main className="mt-8">
           <PortableText value={blog.content} components={components} />
         </main>
       </article>
@@ -73,6 +72,24 @@ export default async function Blog({ params }: { params: Params }) {
 }
 
 const components: PortableTextComponents = {
+  types: {
+    image: ({ value }) => {
+      if (!value?.asset?._ref) {
+        return null;
+      }
+      const isGif = value.asset._ref.endsWith(".gif");
+      return (
+        <Image
+          src={urlFor(value).width(400).url()}
+          width={400}
+          height={200}
+          alt={value.alt || "blog post image"}
+          className="my-8 rounded-lg mx-auto block"
+          unoptimized={isGif}
+        />
+      );
+    },
+  },
   block: {
     h1: ({ children }) => (
       <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
