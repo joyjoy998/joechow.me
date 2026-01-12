@@ -4,7 +4,7 @@ import { redis } from "@/lib/redisClient";
 export async function GET() {
   const userName = "joyjoy998";
   const cacheKey = `leetcode:user:${userName}`;
-  const CACHE_TTL = 60 * 60 * 2; // 2 hour
+  const CACHE_TTL = 60 * 60 * 48; // 48 hours
 
   try {
     const cachedData = (await redis.get(cacheKey)) as unknown;
@@ -13,7 +13,7 @@ export async function GET() {
     }
 
     const response = await fetch(
-      "https://alfa-leetcode-api.onrender.com/userProfileUserQuestionProgressV2/joyjoy998"
+      `https://alfa-leetcode-api.onrender.com/${userName}/solved`
     );
     if (!response.ok) {
       return NextResponse.json(
@@ -24,10 +24,10 @@ export async function GET() {
     const json = await response.json();
 
     const extractedData = {
-      numAcceptedQuestions:
-        json.data.userProfileUserQuestionProgressV2.numAcceptedQuestions,
-      userSessionBeatsPercentage:
-        json.data.userProfileUserQuestionProgressV2.userSessionBeatsPercentage,
+      solvedProblems: json.solvedProblem,
+      easy: json.easySolved,
+      medium: json.mediumSolved,
+      hard: json.hardSolved,
     };
 
     await redis.set(cacheKey, extractedData, { ex: CACHE_TTL });
